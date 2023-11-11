@@ -9,24 +9,56 @@ body {
 .container {
 	max-width: 390px;
 }
-
-.header {
+.header-banner {
+	height: 100px;
+	margin: 12px;
+	border-radius: 12px;
+	background: #e7eaf3;
+}
+.categories-wrapper {
+	padding: 0;
+	margin: 32px 12px;
+	width: 100%;
+}
+.categories-title {
+	font-size: 10px;
+	color: #626d7a;
+	font-family: Gilroy;
+	font-weight: 700;
+}
+.categories-list {
+	display: grid;
+	column-gap: 12px;
+	grid-template-columns: repeat(6,minmax(90px,1fr));
+	overflow-x: auto;
+}
+.categories-item {
 	display: flex;
-	justify-content: space-between;
-	align-items: center;
-	padding: 0 12px;
-	height: 50px;
-	margin-bottom: 24px;
-	background: rgb(248, 168, 24);
+	flex-direction: column;
+	max-width: 90px;
+	max-height: 180px;
+	border-radius: 16px;
+	padding: 0;
 }
-.header-menu {
-	width: 30px;
-	fill: #fff;
+.image-wrapper {
+	margin-left: 0;
+    margin-right: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 90px;
+    height: 90px;
+    background: #e7eaf3;
+    border-radius: 12px;
 }
-
+.image-wrapper img {
+	width: 45px;
+	height: 45px;
+	min-height: 45px;
+}
 .inner {
 	display: grid;
-	grid-template-columns: 1fr 1fr 1fr;
+	grid-template-columns: repeat(3, auto);
 	grid-template-rows: 200px 200px 200px;
 }
 
@@ -40,20 +72,19 @@ body {
 
 .btn {
 	display: inline-block;
-	padding: 8px 30px;
+	padding: 10px 20px;
 	border: none;
 	background: rgb(248, 168, 24);
 	border-radius: 10px;
 	color: #fff;
 	text-transform: uppercase;
 	font-weight: 700;
-	margin-top: 12px;
 
 	transition: background .2s linear;
 }
 
 .btn:hover {
-	background: rgb(231, 151, 3);
+	background: lightgreen;
 }
 
 .usercard {
