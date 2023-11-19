@@ -40,7 +40,13 @@ a {
 	display: grid;
 	column-gap: 12px;
 	grid-template-columns: repeat(6,minmax(90px,1fr));
-	overflow-x: auto;
+	overflow: auto;
+      -ms-overflow-style: none;
+      scrollbar-width: none;
+}
+.categories-list::-webkit-scrollbar {
+	width: 0;
+	height: 0;
 }
 .categories-item {
 	display: flex;
