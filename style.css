@@ -9,7 +9,12 @@ a {
 	text-decoration: none;
 }
 .container {
+	display: flex;
+	flex-direction: column;
+	margin: 0 auto;
 	max-width: 480px;
+	justify-content: space-around;
+	align-content: flex-end;
 	padding: 12px;
 }
 .header-banner {
