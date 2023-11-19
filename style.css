@@ -97,6 +97,7 @@ a {
 	flex-direction: column;
 	border: 1px solid #d3dbe3;
 	border-radius: 8px;
+	overflow: hidden;
 }
 
 .btn {
