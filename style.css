@@ -10,6 +10,11 @@ a {
 	color: #0F1419;
 	text-decoration: none;
 }
+button {
+	cursor: pointer;
+	border: none;
+	background: none;
+}
 .container {
 	display: flex;
 	flex-direction: column;
@@ -175,4 +180,21 @@ a {
 .price {
 	font-size: 24px;
 	font-weight: 600;
+}
+.xpmkoxit {
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+}
+.urfjoogb {
+	display: flex;
+	align-items: center;
+}
+.ipfjpbhp {
+	width: 36px;
+	height: 36px;
+}
+.ipfjpbhp svg {
+	width: 24px;
+	height: 24px;
 }
