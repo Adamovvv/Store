@@ -4,20 +4,26 @@ body {
 	font-size: 18px;
 	font-family: 'Roboto', sans-serif;
 }
-
+a {
+	color: #0F1419;
+	text-decoration: none;
+}
 .container {
-	max-width: 390px;
+	max-width: 480px;
 	padding: 12px;
 }
 .header-banner {
-	height: 100px;
-	margin: 12px;
+	height: 120px;
 	border-radius: 12px;
+	overflow: hidden;
 	background: #e7eaf3;
+}
+.header-banner img {
+	width: 100%;
 }
 .categories-wrapper {
 	padding: 0;
-	margin: 32px 12px;
+	margin: 32px 0;
 	width: 100%;
 }
 .categories-title {
@@ -65,6 +71,9 @@ body {
 	display: flex;
 	margin: auto;
 }
+.des {
+	padding: 12px;
+}
 .img {
 	width: 100%;
 }
@@ -84,7 +93,6 @@ body {
 	flex-direction: column;
 	border: 1px solid #d3dbe3;
 	border-radius: 8px;
-	text-align: center;
 }
 
 .btn {
