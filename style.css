@@ -1,7 +1,6 @@
 body {
 	margin: 0;
 	padding: 0;
-	font-size: 18px;
 	font-family: 'Roboto', sans-serif;
 	color: var(--tg-theme-text-color);
 	background: var(--tg-theme-bg-color);
@@ -35,6 +34,8 @@ button {
 	height: 100%;
 }
 .categories-wrapper {
+	display: grid;
+	gap: 12px;
 	padding: 0;
 	margin: 32px 0;
 	width: 100%;
@@ -48,7 +49,7 @@ button {
 .categories-list {
 	display: grid;
 	column-gap: 12px;
-	grid-template-columns: repeat(6,minmax(90px,1fr));
+	grid-template-columns: repeat(5,minmax(90px,1fr));
 	overflow: auto;
       -ms-overflow-style: none;
       scrollbar-width: none;
@@ -102,7 +103,7 @@ button {
 }
 .lsgdo {
     font-weight: 600;
-    font-size: 15px;
+    font-size: 18px;
 	color: #307FFF;
 }
 .item {
@@ -143,6 +144,10 @@ button {
 	font-size: 20px;
 	font-weight: 600;
 }
+.product-info {
+	display: grid;
+	gap: 12px;
+}
 .product-icons {
 	display: flex;
 	gap: 8px;
@@ -150,7 +155,6 @@ button {
 .product-photos {
 	width: 80px;
 	height: 80px;
-	border: 1px solid #d3dbe3;
 	border-radius: 8px;
 	overflow: hidden;
 }
@@ -161,9 +165,8 @@ button {
 	margin: 12px 0;
 }
 .twixdgth {
-	height: 456px;
+	display: flex;
 	border-radius: 8px;
-	margin-bottom: 12px;
 	overflow: hidden;
 }
 .twixdgth img {
@@ -180,6 +183,7 @@ button {
 .price {
 	font-size: 24px;
 	font-weight: 600;
+	color: #307FFF;
 }
 .xpmkoxit {
 	display: flex;
@@ -188,6 +192,7 @@ button {
 }
 .urfjoogb {
 	display: flex;
+	gap: 5px;
 	align-items: center;
 }
 .ipfjpbhp {
@@ -197,4 +202,13 @@ button {
 .ipfjpbhp svg {
 	width: 24px;
 	height: 24px;
+}
+.tab.is-active {
+	display: block;
+}
+.tab {
+	display: none;
+}
+.tctniadb {
+	margin-bottom: 12px;
 }
