@@ -66,6 +66,9 @@ button {
 	border-radius: 16px;
 	padding: 0;
 }
+.is-active span {
+	color: #307FFF;
+}
 .image-wrapper {
 	margin-left: 0;
     margin-right: 0;
