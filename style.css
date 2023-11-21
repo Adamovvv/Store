@@ -48,7 +48,7 @@ button {
 .categories-list {
 	display: grid;
 	column-gap: 12px;
-	grid-template-columns: repeat(5,minmax(90px,1fr));
+	grid-template-columns: repeat(6,minmax(90px,1fr));
 	overflow: auto;
       -ms-overflow-style: none;
       scrollbar-width: none;
@@ -72,15 +72,11 @@ button {
     display: flex;
     justify-content: center;
     align-items: center;
+	overflow: hidden;
     width: 90px;
     height: 90px;
     background: #e7eaf3;
     border-radius: 12px;
-}
-.image-wrapper img {
-	width: 45px;
-	height: 45px;
-	min-height: 45px;
 }
 .inner {
 	display: grid;
@@ -91,6 +87,9 @@ button {
 	display: flex;
 }
 .des {
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
 	padding: 12px;
 }
 .img {
@@ -101,13 +100,21 @@ button {
     font-size: 14px;
 }
 .lsgdo {
+	position: absolute;
+	right: 12px;
+	bottom: 44px;
+	background: #fff;
+	border: 1px solid #307FFF;
+	padding: 4px 12px;
+	border-radius: 2rem;
     font-weight: 600;
-    font-size: 18px;
+    font-size: 16px;
 	color: #307FFF;
 }
 .item {
 	display: flex;
 	flex-direction: column;
+	position: relative;
 	border: 1px solid #d3dbe3;
 	border-radius: 8px;
 	overflow: hidden;
