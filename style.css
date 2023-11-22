@@ -106,7 +106,7 @@ button {
 	position: absolute;
 	right: 12px;
 	bottom: 44px;
-	background: #fff;
+	background: var(--tg-theme-bg-color);
 	border: 1px solid #307FFF;
 	padding: 4px 12px;
 	border-radius: 2rem;
