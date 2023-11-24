@@ -66,7 +66,7 @@ button {
 	border-radius: 16px;
 	padding: 0;
 }
-.is-active span {
+.is-active .categories-title {
 	color: #307FFF;
 }
 .image-wrapper {
@@ -106,7 +106,7 @@ button {
 	position: absolute;
 	right: 12px;
 	bottom: 44px;
-	background: var(--tg-theme-bg-color);
+	background: #fff;
 	border: 1px solid #307FFF;
 	padding: 4px 12px;
 	border-radius: 2rem;
