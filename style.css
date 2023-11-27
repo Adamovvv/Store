@@ -34,6 +34,7 @@ button {
 	font-size: 13px;
 	font-weight: 700;
 	text-align: center;
+	white-space: nowrap;
 }
 .categories-list {
 	display: grid;
@@ -81,16 +82,12 @@ button {
     font-size: 14px;
 }
 .lsgdo {
-	position: absolute;
-	right: 12px;
-	bottom: 46px;
-	background: #fff;
-	border: 1px solid #307FFF;
-	padding: 4px 10px;
+	background: #0e0e0e;
+	padding: 4px 12px;
 	border-radius: 2rem;
     font-weight: 600;
     font-size: 15px;
-	color: #307FFF;
+	color: #ffffff;
 }
 .item {
 	display: flex;
@@ -137,7 +134,7 @@ button {
 }
 .product-icons {
 	display: flex;
-	gap: 8px;
+	gap: 12px;
 }
 .product-photos {
 	width: 80px;
@@ -148,7 +145,7 @@ button {
 .divider {
 	width: auto;
 	height: 1px;
-	background: #d3dbe3;
+	background: #ECEEEF;
 	margin: 12px 0;
 }
 .twixdgth {
@@ -164,9 +161,12 @@ button {
 	gap: 12px;
 }
 .price {
-	font-size: 24px;
+	font-size: 20px;
 	font-weight: 600;
-	color: #307FFF;
+	background: #0e0e0e;
+	color: #fff;
+	padding: 4px 12px;
+	border-radius: 2rem;
 }
 .xpmkoxit {
 	display: flex;
@@ -185,6 +185,10 @@ button {
 .ipfjpbhp svg {
 	width: 24px;
 	height: 24px;
+}
+.rlycdaoc {
+	font-size: 16px;
+	font-weight: 600;
 }
 .tab.is-active {
 	display: block;
