@@ -23,21 +23,11 @@ button {
 	align-content: flex-end;
 	padding: 12px;
 }
-.header-banner {
-	height: 120px;
-	border-radius: 12px;
-	overflow: hidden;
-	background: #e7eaf3;
-}
-.header-banner img {
-	width: 100%;
-	height: 100%;
-}
 .categories-wrapper {
 	display: grid;
 	gap: 12px;
 	padding: 0;
-	margin: 32px 0;
+	margin-bottom: 24px;
 	width: 100%;
 }
 .categories-title {
@@ -48,10 +38,8 @@ button {
 .categories-list {
 	display: grid;
 	column-gap: 12px;
-	grid-template-columns: repeat(6,minmax(90px,1fr));
+	grid-template-columns: repeat(6, auto);
 	overflow: auto;
-      -ms-overflow-style: none;
-      scrollbar-width: none;
 }
 .categories-list::-webkit-scrollbar {
 	width: 0;
@@ -59,27 +47,17 @@ button {
 }
 .categories-item {
 	display: flex;
-	flex-direction: column;
-	gap: 5px;
-	max-width: 90px;
-	max-height: 180px;
-	border-radius: 16px;
-	padding: 0;
+	gap: 8px;
+	align-items: center;
+	background: #ECEEEF;
+	padding: 4px 16px;
+	border-radius: 2rem;
+}
+.categories-list .is-active {
+	background: #0e0e0e;
 }
 .is-active .categories-title {
-	color: #307FFF;
-}
-.image-wrapper {
-	margin-left: 0;
-    margin-right: 0;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-	overflow: hidden;
-    width: 90px;
-    height: 90px;
-    background: #e7eaf3;
-    border-radius: 12px;
+	color: #ffffff;
 }
 .inner {
 	display: grid;
@@ -118,7 +96,7 @@ button {
 	display: flex;
 	flex-direction: column;
 	position: relative;
-	border: 1px solid #d3dbe3;
+	border: 1px solid #ECEEEF;
 	border-radius: 8px;
 	overflow: hidden;
 }
@@ -181,10 +159,6 @@ button {
 .twixdgth img {
 	width: 100%;
 }
-.rlycdaoc {
-	font-size: 20px;
-	font-weight: 600;
-}
 .jgqpwcmo {
 	display: grid;
 	gap: 12px;
@@ -219,5 +193,7 @@ button {
 	display: none;
 }
 .tctniadb {
+	font-size: 16px;
+	font-weight: 600;
 	margin-bottom: 12px;
 }
