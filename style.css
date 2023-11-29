@@ -51,7 +51,7 @@ button {
 	gap: 8px;
 	align-items: center;
 	background: #ECEEEF;
-	padding: 4px 16px;
+	padding: 4px 12px;
 	border-radius: 2rem;
 }
 .categories-list .is-active {
@@ -200,4 +200,22 @@ button {
 	font-size: 16px;
 	font-weight: 600;
 	margin-bottom: 12px;
+}
+.slider {
+	display: grid;
+	width: 100%;
+	margin-bottom: 24px;
+}
+.dghgauqz {
+	display: grid;
+	grid-template-columns: repeat(2, auto);
+	overflow: auto;
+	gap: 12px;
+}
+.irnfefys {
+	width: 380px;
+	height: 160px;
+	background: #0e0e0e;
+	border-radius: 16px;
+	overflow: hidden;
 }
