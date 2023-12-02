@@ -50,8 +50,10 @@ button {
 	display: flex;
 	gap: 8px;
 	align-items: center;
+	height: 30px;
+	padding-left: 15px;
+	padding-right: 15px;
 	background: #ECEEEF;
-	padding: 4px 12px;
 	border-radius: 2rem;
 }
 .categories-list .is-active {
@@ -82,11 +84,15 @@ button {
     font-size: 14px;
 }
 .lsgdo {
+	display: flex;
+	align-items: center;
+	height: 30px;
+	padding-left: 15px;
+	padding-right: 15px;
 	background: #0e0e0e;
-	padding: 4px 12px;
 	border-radius: 2rem;
     font-weight: 600;
-    font-size: 15px;
+    font-size: 16px;
 	color: #ffffff;
 }
 .item {
@@ -161,11 +167,15 @@ button {
 	gap: 12px;
 }
 .price {
-	font-size: 20px;
+	display: flex;
+	align-items: center;
+	height: 30px;
+	padding-left: 15px;
+	padding-right: 15px;
+	font-size: 18px;
 	font-weight: 600;
 	background: #0e0e0e;
 	color: #fff;
-	padding: 4px 12px;
 	border-radius: 2rem;
 }
 .xpmkoxit {
@@ -209,8 +219,10 @@ button {
 .dghgauqz {
 	display: grid;
 	grid-template-columns: repeat(2, auto);
-	overflow: auto;
+	overflow-x: auto;
 	gap: 12px;
+	scroll-snap-type: x mandatory;
+  	white-space: nowrap;
 }
 .irnfefys {
 	width: 300px;
@@ -218,6 +230,8 @@ button {
 	background: #ECEEEF;
 	border-radius: 16px;
 	overflow: hidden;
+	scroll-snap-align: start;
+  	box-sizing: border-box;
 }
 .irnfefys img {
 	width: 100%;
