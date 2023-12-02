@@ -72,9 +72,10 @@ button {
 }
 .des {
 	display: flex;
-	justify-content: space-between;
-	align-items: center;
+	flex-direction: column;
+	height: 100%;
 	padding: 12px;
+	gap: 12px;
 }
 .img {
 	width: 100%;
@@ -82,18 +83,15 @@ button {
 .hzl46 {
     font-weight: 600;
     font-size: 14px;
+	word-break: break-word;
 }
 .lsgdo {
 	display: flex;
 	align-items: center;
-	height: 30px;
-	padding-left: 15px;
-	padding-right: 15px;
-	background: #0e0e0e;
-	border-radius: 2rem;
+	margin-left: auto;
     font-weight: 600;
-    font-size: 16px;
-	color: #ffffff;
+    font-size: 18px;
+	color: #0e0e0e;
 }
 .item {
 	display: flex;
@@ -223,6 +221,11 @@ button {
 	gap: 12px;
 	scroll-snap-type: x mandatory;
   	white-space: nowrap;
+}
+.nrvzdqvd {
+	flex: 1;
+	display: grid;
+	gap: 4px;
 }
 .irnfefys {
 	width: 300px;
