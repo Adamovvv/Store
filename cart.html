@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<link rel="stylesheet" href="style.css">
+	<title>Document</title>
+</head>
+<body>
+    <div class="cart-page">
+        <h1>Shopping Cart</h1>
+        <ul id="cart-items">
+            <!-- Сюда будет добавляться содержимое корзины -->
+        </ul>
+    </div>
+    <div class="send-cart">Отправить заказ боту</div>
+
+    <script src="https://telegram.org/js/telegram-web-app.js"></script>
+    <script src="functions.js"></script>
+    <script>
+        // Функция для загрузки содержимого корзины из localStorage
+window.onload = function() {
+    const cartItems = JSON.parse(localStorage.getItem('cart')) || [];
+    const cartList = document.getElementById('cart-items');
+
+    // Очищаем содержимое списка перед загрузкой новых элементов
+    cartList.innerHTML = '';
+
+    cartItems.forEach(item => {
+        const li = document.createElement('li');
+        li.innerHTML = `
+            <div class="cart-item">
+                <span>${item.name}</span>
+                <div class="quantity-controls">
+                    <button onclick="decrementItem('${item.name}')">-</button>
+                    <span>${item.quantity}</span>
+                    <button onclick="incrementItem('${item.name}')">+</button>
+                </div>
+                <button onclick="removeItem('${item.name}')">Удалить</button>
+            </div>
+        `;
+        cartList.appendChild(li);
+    });
+};
+    </script>
+</body>
+</html>
