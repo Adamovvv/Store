@@ -131,21 +131,52 @@ function updateCartDisplay() {
     const cart = getCartFromLocalStorage();
 
     cart.forEach(item => {
+        const itemTotal = (item.price * item.quantity).toFixed(2); // Рассчитываем сумму для данного товара
+
         const li = document.createElement('li');
         li.innerHTML = `
             <div class="cart-item">
-                <span>${item.name}</span>
-                <div class="quantity-controls">
-                    <button onclick="decrementItem('${item.name}')">-</button>
-                    <span>${item.quantity}</span>
-                    <button onclick="incrementItem('${item.name}')">+</button>
+                <div class="cart-item-info">
+                    <img src="product-icon.png">
+                    <div class="nwhnbufw">
+                        <div>${item.name}</div>
+                        <div class="quantity-controls">
+                            <button onclick="decrementItem('${item.name}')">
+                                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path d="M5 11V13H19V11H5Z"/></svg>
+                            </button>
+                            <span>${item.quantity}</span>
+                            <button onclick="incrementItem('${item.name}')">
+                                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path d="M11 11V5H13V11H19V13H13V19H11V13H5V11H11Z"/></svg>
+                            </button>
+                        </div>
+                    </div>
+                    <div class="cart-price">$${itemTotal}</div> <!-- Отображаем сумму для данного товара -->
                 </div>
-                <button onclick="removeItem('${item.name}')">Удалить</button>
+                <button class="cart-delete" onclick="removeItem('${item.name}')">
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path d="M17 6H22V8H20V21C20 21.5523 19.5523 22 19 22H5C4.44772 22 4 21.5523 4 21V8H2V6H7V3C7 2.44772 7.44772 2 8 2H16C16.5523 2 17 2.44772 17 3V6ZM18 8H6V20H18V8ZM9 4V6H15V4H9Z"/></svg>
+                </button>
             </div>
         `;
         cartList.appendChild(li);
     });
+
+    // Обновляем общую сумму
+    const totalAmount = calculateTotal();
+    document.getElementById('cart-total-amount').textContent = `$${totalAmount}`;
 }
+
+
 
 // Запускаем функцию обновления отображения корзины при загрузке страницы
 updateCartDisplay();
+
+function calculateTotal() {
+    const cart = getCartFromLocalStorage();
+    let total = 0;
+
+    cart.forEach(item => {
+        total += item.price * item.quantity;
+    });
+
+    return total.toFixed(2); // Возвращает общую сумму с двумя знаками после запятой
+}

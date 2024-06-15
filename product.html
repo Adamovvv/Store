@@ -18,7 +18,7 @@
 					<div>101-2</div>
 				</div>
 			</div>
-			<div class="price">Price</div>
+			<div class="price">$6.99</div>
 		</div>
 		<div class="product-info">
 			<div class="twixdgth">
@@ -48,15 +48,21 @@
 			<div class="rlycdaoc">Category</div>
 			<span>Category name</span>
 		</div>
-		<div class="cart-container">
+	</div>
+	<div class="cart-container">
+		<div class="layout-tabs">
 			<button onclick="addToCart()" class="add-to-cart-btn">Добавить в корзину</button>
 			<div class="quantity-controls">
-				<button onclick="decrementQuantity()">-</button>
+				<button onclick="decrementQuantity()">
+					<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path d="M5 11V13H19V11H5Z"/></svg>
+				</button>
 				<span id="quantity">1</span>
-				<button onclick="incrementQuantity()">+</button>
+				<button onclick="incrementQuantity()">
+					<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path d="M11 11V5H13V11H19V13H13V19H11V13H5V11H11Z"/></svg>
+				</button>
 			</div>
-		</div>		
-	</div>
+		</div>
+	</div>		
 	<div class="usercard" id="usercard">
 		
 	</div>
