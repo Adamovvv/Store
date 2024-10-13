@@ -18,15 +18,15 @@ button {
 	display: flex;
 	flex-direction: column;
 	max-width: 480px;
-	height: 100vh;
+}
+.product-page {
+	margin-bottom: 80px;
 }
 .products-list {
 	padding: 12px;
 }
 .categories-wrapper {
 	display: grid;
-	gap: 12px;
-	padding: 12px;
 }
 .categories-title {
 	font-size: 13px;
@@ -37,8 +37,9 @@ button {
 .categories-list {
 	display: grid;
 	column-gap: 12px;
+	padding: 12px;
 	grid-template-columns: repeat(6, auto);
-	overflow: auto;
+	overflow-x: auto;
 }
 .categories-list::-webkit-scrollbar {
 	width: 0;
@@ -59,6 +60,9 @@ button {
 }
 .is-active .categories-title {
 	color: #ffffff;
+}
+.logo {
+	font-size: 18px;
 }
 .inner {
 	display: grid;
@@ -86,9 +90,8 @@ button {
 .lsgdo {
 	display: flex;
 	align-items: center;
-	margin-left: auto;
     font-weight: 600;
-    font-size: 18px;
+    font-size: 20px;
 	color: #0e0e0e;
 }
 .item {
@@ -123,8 +126,13 @@ button {
 	display: flex;
 	justify-content: space-between;
 	align-items: center;
-	margin-bottom: 12px;
+	padding: 12px;
 }
+.srueuxwi_cart {
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+} 
 .product-post-name {
 	font-size: 20px;
 	font-weight: 600;
@@ -132,6 +140,7 @@ button {
 .product-info {
 	display: grid;
 	gap: 12px;
+	padding: 12px;
 }
 .product-icons {
 	display: flex;
@@ -160,6 +169,7 @@ button {
 .jgqpwcmo {
 	display: grid;
 	gap: 12px;
+	padding: 12px;
 }
 .price {
 	display: flex;
@@ -177,6 +187,7 @@ button {
 	display: flex;
 	justify-content: space-between;
 	align-items: center;
+	padding: 12px;
 }
 .urfjoogb {
 	display: flex;
@@ -188,6 +199,8 @@ button {
 	height: 36px;
 }
 .ipfjpbhp svg {
+	display: flex;
+	margin: auto;
 	width: 24px;
 	height: 24px;
 }
@@ -208,7 +221,6 @@ button {
 }
 .slider {
 	display: grid;
-	margin-bottom: 24px;
 }
 .dghgauqz {
 	display: grid;
@@ -239,6 +251,7 @@ button {
     display: flex;
     align-items: center;
     position: fixed;
+	height: 60px;
     left: 0;
     right: 0;
     bottom: 0;
@@ -260,6 +273,10 @@ button {
     border: none;
     border-radius: 4px;
     cursor: pointer;
+}
+#cart-count {
+	font-size: 16px;
+	font-weight: bold;
 }
 .header {
 	display: flex;
@@ -290,11 +307,11 @@ button {
 #cart-items {
     list-style-type: none;
     padding: 0;
+	margin: 0;
 }
 
 .cart-item {
-    margin-bottom: 10px;
-    padding: 10px;
+    padding: 12px;
     background-color: #fff;
     border-bottom: 1px solid #F1F1F1;
 }
@@ -337,25 +354,15 @@ button {
 	width: 100%;
 	display: flex;
 	align-items: center;
-	font-size: 24px;
+	font-size: 16px;
 }
 .cart-price {
-	font-size: 20px;
+	font-size: 18px;
 }
 .quantity-controls {
-	max-width: 120px;
     display: flex;
     align-items: center;
-	justify-content: space-between;
-	padding: 8px;
-	border: 1px solid #F1F1F1;
-	border-radius: 8px;
-}
-.red {
-	background: #E53535;
-}
-.blue {
-	background: #307FEF;
+	gap: 15px;
 }
 .cart-delete svg {
 	width: 24px;
@@ -365,27 +372,29 @@ button {
 .quantity-controls button {
 	display: flex;
 	align-items: center;
-    width: 30px;
-	height: 30px;
+    width: 36px;
+	height: 36px;
     border: none;
     border-radius: 2rem;
+	background: #fff;
 }
 #quantity {
 	font-size: 18px;
 	font-weight: 700;
 }
 .quantity-controls svg {
-	width: 20px;
-	height: 20px;
-	color: #fff;
+	width: 24px;
+	height: 24px;
+	color: #000;
 }
 .send-cart {
 	width: 100%;
+	height: 60px;
 	position: fixed;
 	background: #307fff;
 	color: #fff;
 	font-size: 16px;
-	font-weight: 700;
+	font-weight: bold;
 	bottom: 0;
 	padding: 12px;
 	text-align: center;
@@ -394,7 +403,9 @@ button {
 	display: flex;
 	align-items: center;
 	justify-content: space-between;
-	font-size: 24px;
+	font-size: 16px;
+	margin-top: 12px;
+	margin-bottom: 60px;
 }
 #cart-total-amount {
 	font-weight: bold;

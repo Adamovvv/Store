@@ -140,20 +140,20 @@ function updateCartDisplay() {
         li.innerHTML = `
             <div class="cart-item">
                 <div class="cart-item-info">
-                    <img src="product-icon.png">
+                    <img src="images/product-icon.png">
                     <div class="nwhnbufw">
                         <div class="product-name">
                             <span>${item.name}</span>
                             <button class="cart-delete" onclick="removeItem('${item.name}')">
-                                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path d="M17 6H22V8H20V21C20 21.5523 19.5523 22 19 22H5C4.44772 22 4 21.5523 4 21V8H2V6H7V3C7 2.44772 7.44772 2 8 2H16C16.5523 2 17 2.44772 17 3V6ZM18 8H6V20H18V8ZM9 4V6H15V4H9Z"/></svg>
+                                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path d="M20 7V21C20 21.5523 19.5523 22 19 22H5C4.44772 22 4 21.5523 4 21V7H2V5H22V7H20ZM6 7V20H18V7H6ZM7 2H17V4H7V2ZM11 10H13V17H11V10Z"/></svg>
                             </button>
                         </div>
                         <div class="quantity-controls">
-                            <button class="red" onclick="decrementItem('${item.name}')">
+                            <button onclick="decrementItem('${item.name}')">
                                 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path d="M5 11V13H19V11H5Z"/></svg>
                             </button>
                             <span>${item.quantity}</span>
-                            <button class="blue" onclick="incrementItem('${item.name}')">
+                            <button onclick="incrementItem('${item.name}')">
                                 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path d="M11 11V5H13V11H19V13H13V19H11V13H5V11H11Z"/></svg>
                             </button>
                         </div>
