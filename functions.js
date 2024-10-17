@@ -125,56 +125,6 @@ function getCartFromLocalStorage() {
 function saveCartToLocalStorage(cart) {
     localStorage.setItem('cart', JSON.stringify(cart));
 }
-
-// Функция для обновления отображения содержимого корзины
-function updateCartDisplay() {
-    const cartList = document.getElementById('cart-items');
-    cartList.innerHTML = ''; // Очищаем текущий список товаров
-
-    const cart = getCartFromLocalStorage();
-
-    cart.forEach(item => {
-        const itemTotal = (item.price * item.quantity).toFixed(2); // Рассчитываем сумму для данного товара
-
-        const li = document.createElement('li');
-        li.innerHTML = `
-            <div class="cart-item">
-                <div class="cart-item-info">
-                    <img src="images/product-icon.png">
-                    <div class="nwhnbufw">
-                        <div class="product-name">
-                            <span>${item.name}</span>
-                            <button class="cart-delete" onclick="removeItem('${item.name}')">
-                                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path d="M20 7V21C20 21.5523 19.5523 22 19 22H5C4.44772 22 4 21.5523 4 21V7H2V5H22V7H20ZM6 7V20H18V7H6ZM7 2H17V4H7V2ZM11 10H13V17H11V10Z"/></svg>
-                            </button>
-                        </div>
-                        <div class="quantity-controls">
-                            <button onclick="decrementItem('${item.name}')">
-                                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path d="M5 11V13H19V11H5Z"/></svg>
-                            </button>
-                            <span>${item.quantity}</span>
-                            <button onclick="incrementItem('${item.name}')">
-                                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path d="M11 11V5H13V11H19V13H13V19H11V13H5V11H11Z"/></svg>
-                            </button>
-                        </div>
-                        <div class="cart-price">$${itemTotal}</div> <!-- Отображаем сумму для данного товара -->
-                    </div>
-                </div>
-            </div>
-        `;
-        cartList.appendChild(li);
-    });
-
-    // Обновляем общую сумму
-    const totalAmount = calculateTotal();
-    document.getElementById('cart-total-amount').textContent = `$${totalAmount}`;
-}
-
-
-
-// Запускаем функцию обновления отображения корзины при загрузке страницы
-updateCartDisplay();
-
 function calculateTotal() {
     const cart = getCartFromLocalStorage();
     let total = 0;
@@ -196,4 +146,46 @@ function updateCartCount() {
     
     // Обновляем содержимое элемента с id "cart-count"
     document.getElementById('cart-count').textContent = totalItems;
+}
+
+function sendCartToBot() {
+    const cart = JSON.parse(localStorage.getItem('cart')) || [];
+    if (cart.length === 0) {
+        alert('Корзина пуста!');
+        return;
+    }
+
+    const totalAmount = calculateTotal();
+    const cartDetails = cart.map(item => 
+        `${item.name} - ${item.quantity} шт. - $${item.price}`
+    ).join('\n');
+    
+    const message = `Ваша корзина:\n${cartDetails}\n\nОбщая сумма: $${totalAmount}`;
+    
+    const botToken = '7003736022:AAGPGT8bMaFSzJ20XxH_r-NabecZPTGSoR0';
+    const chatId = '7065197387';
+    const url = `https://api.telegram.org/bot${botToken}/sendMessage`;
+
+    fetch(url, {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({
+            chat_id: chatId,
+            text: message
+        })
+    })
+    .then(response => response.json())
+    .then(data => {
+        if (data.ok) {
+            alert('Корзина успешно отправлена боту!');
+        } else {
+            alert('Ошибка при отправке корзины!');
+        }
+    })
+    .catch(error => {
+        console.error('Error:', error);
+        alert('Ошибка при отправке корзины!');
+    });
 }

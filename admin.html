@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<link rel="stylesheet" href="style.css">
+	<title>Document</title>
+</head>
+<body>
+    <div class="container">
+        <h2>Админ панель</h2>
+        <form id="productForm">
+            <input type="hidden" id="productId"> <!-- Добавлен для хранения id товара -->
+            <input type="text" id="productName" placeholder="Название товара" required>
+            <input type="number" step="0.01" id="productPrice" placeholder="Цена" required>
+            <input type="text" id="productDescription" placeholder="Описание товара">
+            <input type="text" id="productImage" placeholder="Ссылка на изображение" required>
+            <select id="productCategory" required>
+                <option value="">Выберите категорию</option>
+                <option value="Электроника">Электроника</option>
+                <option value="Одежда">Одежда</option>
+                <option value="Игрушки">Игрушки</option>
+            </select>
+            <button type="submit" id="submitBtn">Добавить товар</button>
+        </form>
+        <div class="coupon-management">
+            <h3>Управление купонами</h3>
+            <input type="text" id="couponCode" placeholder="Код купона" required>
+            <input type="number" id="discountPercentage" placeholder="Скидка (%)" required>
+            <button onclick="addCoupon()">Добавить купон</button>
+            <div id="couponList"></div>
+        </div>        
+        <div id="productList"></div>
+    </div>
+
+<script>
+    document.getElementById('productForm').addEventListener('submit', function(e) {
+        e.preventDefault();
+        const id = document.getElementById('productId').value;
+        const name = document.getElementById('productName').value;
+        const price = parseFloat(document.getElementById('productPrice').value);
+        const description = document.getElementById('productDescription').value;
+        const imageUrl = document.getElementById('productImage').value;
+        const category = document.getElementById('productCategory').value;
+
+        if (id) {
+            updateProduct(id, name, price, description, imageUrl, category);
+        } else {
+            addProduct(name, price, description, imageUrl, category);
+        }
+        displayProducts();
+        document.getElementById('productForm').reset();
+        document.getElementById('submitBtn').textContent = 'Добавить товар';
+    });
+
+    function addProduct(name, price, description, imageUrl, category) {
+        const products = JSON.parse(localStorage.getItem('products')) || [];
+        const id = products.length ? products[products.length - 1].id + 1 : 1;
+        products.push({ id, name, price, description, imageUrl, category });
+        localStorage.setItem('products', JSON.stringify(products));
+    }
+
+    function editProduct(id) {
+        const products = JSON.parse(localStorage.getItem('products')) || [];
+        const product = products.find(p => p.id == id);
+        if (product) {
+            document.getElementById('productId').value = product.id;
+            document.getElementById('productName').value = product.name;
+            document.getElementById('productPrice').value = product.price;
+            document.getElementById('productDescription').value = product.description;
+            document.getElementById('productImage').value = product.imageUrl;
+            document.getElementById('productCategory').value = product.category;
+            document.getElementById('submitBtn').textContent = 'Обновить товар';
+        }
+    }
+
+    function updateProduct(id, name, price, description, imageUrl, category) {
+        let products = JSON.parse(localStorage.getItem('products')) || [];
+        const index = products.findIndex(p => p.id == id);
+        if (index !== -1) {
+            products[index] = { id: Number(id), name, price, description, imageUrl, category };
+            localStorage.setItem('products', JSON.stringify(products));
+        }
+    }
+
+    function displayProducts() {
+        const products = JSON.parse(localStorage.getItem('products')) || [];
+        const productList = document.getElementById('productList');
+        productList.innerHTML = '';
+        products.forEach(product => {
+            const div = document.createElement('div');
+            div.innerHTML = `
+                <div class="product-item">
+                    <div class="product-flex">
+                        <img src="${product.imageUrl}" alt="${product.name}">
+                        <div class="admin-product-info">
+                            <p><strong>${product.name}</strong></p>
+                            <p>Цена: $${product.price}</p>
+                            <p>Категория: ${product.category}</p>
+                            <p>Описание: ${product.description}</p>
+                        </div>
+                    </div>
+                    <div class="product-btns">
+                        <button class="edit-btn" onclick="editProduct(${product.id})">Редактировать</button>
+                        <button class="delete-btn" onclick="deleteProduct(${product.id})">Удалить</button>    
+                    </div>
+                </div>
+            `;
+            productList.appendChild(div);
+        });
+    }
+
+    function deleteProduct(id) {
+        let products = JSON.parse(localStorage.getItem('products')) || [];
+        products = products.filter(product => product.id !== id);
+        localStorage.setItem('products', JSON.stringify(products));
+        displayProducts();
+    }
+
+    displayProducts();
+
+    function addCoupon() {
+    const code = document.getElementById('couponCode').value;
+    const discount = parseFloat(document.getElementById('discountPercentage').value);
+
+    if (!code || isNaN(discount) || discount <= 0 || discount > 100) {
+        alert('Введите действительный код купона и процент скидки (1-100)');
+        return;
+    }
+
+    const coupons = JSON.parse(localStorage.getItem('coupons')) || [];
+    coupons.push({ code, discount });
+    localStorage.setItem('coupons', JSON.stringify(coupons));
+
+    alert('Купон добавлен!');
+    document.getElementById('couponCode').value = '';
+    document.getElementById('discountPercentage').value = '';
+    displayCoupons();
+    }
+
+    function displayCoupons() {
+        const coupons = JSON.parse(localStorage.getItem('coupons')) || [];
+        const couponList = document.getElementById('couponList');
+        couponList.innerHTML = coupons.map(coupon => `<p>${coupon.code} - ${coupon.discount}% скидка</p>`).join('');
+    }
+
+    displayCoupons(); // Выводим купоны при загрузке страницы
+
+</script>
+</html>
