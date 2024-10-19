@@ -44,32 +44,38 @@
                 // Расширяем приложение на весь экран
                 tg.expand();
 
-                // Скрываем кнопку "Назад"
-                tg.BackButton.hide();
+                // Устанавливаем кнопку "Назад"
+                tg.BackButton.show();
+                tg.BackButton.onClick(() => {
+                    window.history.back(); // Возвращаемся на предыдущую страницу
+                });
 
-                // Настраиваем кнопку "Отправить корзину боту"
+                // Устанавливаем кнопку "Отправить корзину"
                 tg.MainButton.setText('Отправить корзину');
                 tg.MainButton.show();
                 tg.MainButton.onClick(() => {
                     sendCartToBot(); // Отправка корзины боту
                 });
             }
+
+            // Обновляем отображение корзины
+            updateCartDisplay();
         });
 
         function updateCartDisplay() {
-            const allProducts = JSON.parse(localStorage.getItem('products')) || [];
-            let cart = JSON.parse(localStorage.getItem('cart')) || [];
-
-            cart = cart.filter(cartItem => allProducts.some(product => product.id === cartItem.id));
-            localStorage.setItem('cart', JSON.stringify(cart));
-
+            const cart = JSON.parse(localStorage.getItem('cart')) || [];
             const cartList = document.getElementById('cart-items');
-            cartList.innerHTML = '';
-            let totalAmount = 0;
+            cartList.innerHTML = ''; // Очищаем список перед отображением
 
+            if (cart.length === 0) {
+                cartList.innerHTML = '<li>Корзина пуста!</li>';
+                return;
+            }
+
+            let totalAmount = 0;
             cart.forEach(item => {
-                const itemTotal = (item.price * item.quantity).toFixed(2);
-                totalAmount += parseFloat(itemTotal);
+                const itemTotal = item.price * item.quantity;
+                totalAmount += itemTotal;
 
                 const li = document.createElement('li');
                 li.innerHTML = `
@@ -77,24 +83,10 @@
                         <img src="${item.mainImage}" alt="${item.name}" class="cart-item-image">
                         <div class="cart-item-info">
                             <div class="product-name-price">
-                                <span class="cart-product-name">
-                                    <span>${item.name}</span>
-                                    <span class="static-price">$${item.price.toFixed(2)}</span>
-                                </span>
-                                <button class="cart-delete-btn" onclick="removeFromCart(1)">
-                                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path d="M17 6H22V8H20V21C20 21.5523 19.5523 22 19 22H5C4.44772 22 4 21.5523 4 21V8H2V6H7V3C7 2.44772 7.44772 2 8 2H16C16.5523 2 17 2.44772 17 3V6ZM18 8H6V20H18V8ZM9 4V6H15V4H9Z"></path></svg>    
-                                </button> 
+                                <span>${item.name}</span>
+                                <span>$${item.price}</span>
                             </div>
                             <div class="count">
-                                <div class="quantity-controls">
-                                    <button onclick="decrementItem('${item.name}')">
-                                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path d="M5 11V13H19V11H5Z"></path></svg>    
-                                    </button>
-                                    <span>${item.quantity}</span>
-                                    <button onclick="incrementItem('${item.name}')">
-                                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path d="M11 11V5H13V11H19V13H13V19H11V13H5V11H11Z"></path></svg>    
-                                    </button>
-                                </div>
                                 <span>Кол-во: ${item.quantity}</span>
                             </div>
                         </div>
