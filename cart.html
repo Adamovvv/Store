@@ -39,6 +39,28 @@
     </div>
     <script src="functions.js"></script>
     <script>
+        // Инициализация WebApp в Telegram
+        if (window.Telegram && window.Telegram.WebApp) {
+            const tg = window.Telegram.WebApp;
+            tg.expand(); // Расширение окна WebApp для удобства
+        }
+
+        document.addEventListener('DOMContentLoaded', () => {
+            if (window.Telegram && window.Telegram.WebApp) {
+                const tg = window.Telegram.WebApp;
+
+                // Устанавливаем кнопку "Назад"
+                tg.BackButton.show();
+                tg.BackButton.onClick(() => {
+                    window.history.back(); // Возвращаемся на предыдущую страницу
+                });
+
+                // Прячем кнопку "Закрыть"
+                tg.MainButton.hide();
+            }
+        });
+
+
         function updateCartDisplay() {
             const allProducts = JSON.parse(localStorage.getItem('products')) || [];
             let cart = JSON.parse(localStorage.getItem('cart')) || [];
