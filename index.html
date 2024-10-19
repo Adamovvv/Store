@@ -60,6 +60,32 @@
 	</script>
 </body>
 <script>
+	// Инициализация WebApp в Telegram
+	if (window.Telegram && window.Telegram.WebApp) {
+            const tg = window.Telegram.WebApp;
+            tg.expand(); // Расширение окна WebApp для удобства
+        }
+
+        document.addEventListener('DOMContentLoaded', () => {
+			if (window.Telegram && window.Telegram.WebApp) {
+				const tg = window.Telegram.WebApp;
+
+				 // Расширяем приложение на весь экран
+				 tg.expand()
+
+				// Прячем кнопку "Назад"
+				tg.BackButton.hide();
+
+				// Устанавливаем кнопку "Закрыть"
+				tg.MainButton.setText('Закрыть');
+				tg.MainButton.show();
+				tg.MainButton.onClick(() => {
+					tg.close(); // Закрываем WebApp
+				});
+			}
+		});
+
+
     document.addEventListener('DOMContentLoaded', () => {
         const categories = document.querySelectorAll('.categories-item');
         categories.forEach(category => {

@@ -50,14 +50,28 @@
             if (window.Telegram && window.Telegram.WebApp) {
                 const tg = window.Telegram.WebApp;
 
-                // Устанавливаем кнопку "Назад"
-                tg.BackButton.show();
-                tg.BackButton.onClick(() => {
-                    window.history.back(); // Возвращаемся на предыдущую страницу
-                });
+                // Расширяем приложение на весь экран
+                tg.expand();
 
-                // Прячем кнопку "Закрыть"
-                tg.MainButton.hide();
+                // Адаптируем отступ для iPhone X и выше
+                const cartContainer = document.querySelector('.cart-container');
+                const sendCart = document.querySelector('.send-cart');
+
+                if (cartContainer) {
+                    cartContainer.style.paddingBottom = 'env(safe-area-inset-bottom)';
+                }
+
+                if (sendCart) {
+                    sendCart.style.paddingBottom = 'env(safe-area-inset-bottom)';
+                }
+
+                // Устанавливаем кнопку "Закрыть" и скрываем кнопку "Назад"
+                tg.BackButton.hide();
+                tg.MainButton.setText('Закрыть');
+                tg.MainButton.show();
+                tg.MainButton.onClick(() => {
+                    tg.close(); // Закрываем WebApp
+                });
             }
         });
 

@@ -325,6 +325,7 @@ button {
 	display: flex;
 	gap: 15px;
 	align-items: center;
+	padding-bottom: 15px;
     background-color: #fff;
     border-bottom: 1px solid #F1F1F1;
 }
