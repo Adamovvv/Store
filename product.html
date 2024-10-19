@@ -33,19 +33,6 @@
             <h3>Рекомендуемые товары</h3>
             <div id="recommendationsContainer"></div>
         </div>        
-        <!-- Кнопка добавления в корзину -->
-        <div class="cart-container">
-            <button onclick="addToCart()" class="add-to-cart-btn">Добавить в корзину</button>
-            <div class="quantity-controls">
-				<button onclick="decrementQuantity()">
-					<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path d="M5 11V13H19V11H5Z"></path></svg>
-				</button>
-				<span id="quantity">1</span>
-				<button onclick="incrementQuantity()">
-					<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path d="M11 11V5H13V11H19V13H13V19H11V13H5V11H11Z"></path></svg>
-				</button>
-			</div>
-        </div>
     </div>
 
     <script>
@@ -150,41 +137,6 @@
                 alert('Товар не найден!');
             }
         }
-
-        function incrementQuantity() {
-            quantity++;
-            updateQuantityDisplay();
-        }
-
-        function decrementQuantity() {
-            if (quantity > 1) {
-                quantity--;
-                updateQuantityDisplay();
-            }
-        }
-
-        function updateQuantityDisplay() {
-            document.getElementById('quantity').textContent = quantity;
-        }
-
-        function addToCart() {
-            const cart = JSON.parse(localStorage.getItem('cart')) || [];
-            const cartItem = cart.find(item => item.id === product.id);
-
-            if (cartItem) {
-                cartItem.quantity += quantity; // Увеличиваем количество на текущее значение quantity
-            } else {
-                cart.push({ ...product, quantity });
-            }
-
-            localStorage.setItem('cart', JSON.stringify(cart));
-            alert(`Добавлено в корзину: ${quantity} шт. ${product.name}`);
-            quantity = 1; // Сброс количества после добавления в корзину
-            updateQuantityDisplay();
-        }
-
-        // Инициализация количества при загрузке страницы
-        updateQuantityDisplay();
 
         function getStars(rating) {
             const maxStars = 5;
