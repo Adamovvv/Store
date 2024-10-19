@@ -237,21 +237,6 @@ button {
 	height: 100%;
 	object-fit: cover;
 }
-.cart-container {
-    display: flex;
-	height: 60px;
-	padding-left: 15px;
-	padding-right: 15px;
-	padding-bottom: env(safe-area-inset-bottom); /* Адаптация под iPhone */
-	justify-content: space-between;
-    align-items: center;
-    position: fixed;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    top: auto;
-    background: #0e0e0e;
-}
 .layout-tabs {
 	width: 100%;
 	display: flex;
@@ -407,23 +392,6 @@ button {
 	width: 24px;
 	height: 24px;
 	color: #000;
-}
-.send-cart {
-	display: flex;
-	height: 60px;
-	position: fixed;
-	background: #0e0e0e;
-	color: #fff;
-	font-size: 16px;
-	font-weight: bold;
-	padding-bottom: env(safe-area-inset-bottom); /* Адаптация под iPhone */
-	left: 0;
-	right: 0;
-	bottom: 0;
-	text-align: center;
-}
-.send-cart span {
-	margin: auto;
 }
 .cart-total {
 	display: flex;

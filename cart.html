@@ -33,9 +33,6 @@
         </div>  
         <div class="cart-total">
             Итого: <span id="cart-total-amount">$0.00</span>
-        </div>      
-        <div class="send-cart" onclick="sendCartToBot()">
-            <span>Отправить корзину боту</span>
         </div>
     </div>
     <script src="functions.js"></script>
@@ -53,24 +50,14 @@
                 // Расширяем приложение на весь экран
                 tg.expand();
 
-                // Адаптируем отступ для iPhone X и выше
-                const cartContainer = document.querySelector('.cart-container');
-                const sendCart = document.querySelector('.send-cart');
-
-                if (cartContainer) {
-                    cartContainer.style.paddingBottom = 'env(safe-area-inset-bottom)';
-                }
-
-                if (sendCart) {
-                    sendCart.style.paddingBottom = 'env(safe-area-inset-bottom)';
-                }
-
-                // Устанавливаем кнопку "Закрыть" и скрываем кнопку "Назад"
+                // Скрываем кнопку "Назад"
                 tg.BackButton.hide();
-                tg.MainButton.setText('Закрыть');
+
+                // Настраиваем кнопку "Отправить корзину боту"
+                tg.MainButton.setText('Отправить корзину');
                 tg.MainButton.show();
                 tg.MainButton.onClick(() => {
-                    tg.close(); // Закрываем WebApp
+                    sendCartToBot(); // Отправка корзины боту
                 });
             }
         });
@@ -164,8 +151,6 @@
                 discountMessage.style.color = 'red'; // Красный цвет для неверного кода
             }
         }
-
-
     </script>
 </body>
 </html>

@@ -72,19 +72,8 @@
 
 				 // Расширяем приложение на весь экран
 				 tg.expand()
-
-				// Прячем кнопку "Назад"
-				tg.BackButton.hide();
-
-				// Устанавливаем кнопку "Закрыть"
-				tg.MainButton.setText('Закрыть');
-				tg.MainButton.show();
-				tg.MainButton.onClick(() => {
-					tg.close(); // Закрываем WebApp
-				});
 			}
 		});
-
 
     document.addEventListener('DOMContentLoaded', () => {
         const categories = document.querySelectorAll('.categories-item');
