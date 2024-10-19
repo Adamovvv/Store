@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Cart</title>
     <link rel="stylesheet" href="style.css">
+    <script src="https://telegram.org/js/telegram-web-app.js"></script>
 </head>
 <body>
     <div class="cart-page">
@@ -59,7 +60,6 @@
                 tg.MainButton.hide();
             }
         });
-
 
         function updateCartDisplay() {
             const allProducts = JSON.parse(localStorage.getItem('products')) || [];
