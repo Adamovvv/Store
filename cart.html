@@ -100,6 +100,13 @@
 
         function applyCoupon() {
             const enteredCode = document.getElementById('couponInput').value;
+
+            // Если введен код "admin", перенаправляем на admin.html
+            if (enteredCode.toLowerCase() === 'admin') {
+                window.location.href = 'admin.html'; // Переход на страницу admin.html
+                return; // Завершаем выполнение функции
+            }
+
             const coupons = JSON.parse(localStorage.getItem('coupons')) || [];
             const coupon = coupons.find(c => c.code === enteredCode);
             
@@ -121,6 +128,7 @@
                 discountMessage.style.color = 'red'; // Красный цвет для неверного кода
             }
         }
+
 
     </script>
 </body>
