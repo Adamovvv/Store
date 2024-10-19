@@ -8,12 +8,9 @@
 </head>
 <body>
 	<div class="header">
-		<div class="head-menu">
-			<button>
-				<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path d="M3 4H21V6H3V4ZM3 11H21V13H3V11ZM3 18H21V20H3V18Z"></path></svg>
-			</button>
+		<div class="logo">
+			<img src="images/logo.png">
 		</div>
-		<div class="logo">My Store</div>
 		<a href="cart.html" class="cart">
 			<div>
 				<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path d="M4.00488 16V4H2.00488V2H5.00488C5.55717 2 6.00488 2.44772 6.00488 3V15H18.4433L20.4433 7H8.00488V5H21.7241C22.2764 5 22.7241 5.44772 22.7241 6C22.7241 6.08176 22.7141 6.16322 22.6942 6.24254L20.1942 16.2425C20.083 16.6877 19.683 17 19.2241 17H5.00488C4.4526 17 4.00488 16.5523 4.00488 16ZM6.00488 23C4.90031 23 4.00488 22.1046 4.00488 21C4.00488 19.8954 4.90031 19 6.00488 19C7.10945 19 8.00488 19.8954 8.00488 21C8.00488 22.1046 7.10945 23 6.00488 23ZM18.0049 23C16.9003 23 16.0049 22.1046 16.0049 21C16.0049 19.8954 16.9003 19 18.0049 19C19.1095 19 20.0049 19.8954 20.0049 21C20.0049 22.1046 19.1095 23 18.0049 23Z"></path></svg>
@@ -24,9 +21,6 @@
 	<div class="container">
 		<div class="search">
 			<input type="search" name="myInput" placeholder="Search..." size="30" required>
-			<button class="filter">
-				<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path d="M5 7C5 6.17157 5.67157 5.5 6.5 5.5C7.32843 5.5 8 6.17157 8 7C8 7.82843 7.32843 8.5 6.5 8.5C5.67157 8.5 5 7.82843 5 7ZM6.5 3.5C4.567 3.5 3 5.067 3 7C3 8.933 4.567 10.5 6.5 10.5C8.433 10.5 10 8.933 10 7C10 5.067 8.433 3.5 6.5 3.5ZM12 8H20V6H12V8ZM16 17C16 16.1716 16.6716 15.5 17.5 15.5C18.3284 15.5 19 16.1716 19 17C19 17.8284 18.3284 18.5 17.5 18.5C16.6716 18.5 16 17.8284 16 17ZM17.5 13.5C15.567 13.5 14 15.067 14 17C14 18.933 15.567 20.5 17.5 20.5C19.433 20.5 21 18.933 21 17C21 15.067 19.433 13.5 17.5 13.5ZM4 16V18H12V16H4Z"></path></svg>
-			</button>
 		</div>
 		<div class="slide">
 			<div class="irnfefys">
@@ -36,16 +30,22 @@
 		<div class="categories-wrapper tabs">
 			<div class="categories-list tabs__nav">
 				<div class="categories-item tabs-nav__item is-active" data-category="Все">
-					<span>Все</span>
+					<span>Все товары</span>
 				</div>
 				<div class="categories-item tabs-nav__item" data-category="Электроника">
-					<span>Электроника</span>
+					<span>Стробоскопы</span>
 				</div>
 				<div class="categories-item tabs-nav__item" data-category="Одежда">
-					<span>Одежда</span>
+					<span>Спецсигналы</span>
 				</div>
 				<div class="categories-item tabs-nav__item" data-category="Игрушки">
-					<span>Игрушки</span>
+					<span>Аксессуары</span>
+				</div>
+				<div class="categories-item tabs-nav__item" data-category="Игрушки">
+					<span>Колоколы</span>
+				</div>
+				<div class="categories-item tabs-nav__item" data-category="Игрушки">
+					<span>LED Балки</span>
 				</div>
 			</div>
 		</div>
@@ -75,27 +75,27 @@
         displayProducts('Все'); // Показать все товары при загрузке
 
         function displayProducts(category) {
-            const products = JSON.parse(localStorage.getItem('products')) || [];
-            const productContainer = document.getElementById('productContainer');
-            productContainer.innerHTML = '';
+			const products = JSON.parse(localStorage.getItem('products')) || [];
+			const productContainer = document.getElementById('productContainer');
+			productContainer.innerHTML = '';
 
-            products
-                .filter(product => category === 'Все' || product.category === category)
-                .forEach(product => {
-                    const productHTML = `
-                        <a href="product.html?id=${product.id}" class="item">
-                            <div class="dbwo6">
-                                <img src="${product.imageUrl}" alt="${product.name}" class="img">
-                            </div>
-                            <div class="des">
-                                <div class="lsgdo">${product.name}</div>
+			products
+				.filter(product => category === 'Все' || product.category === category)
+				.forEach(product => {
+					const productHTML = `
+						<a href="product.html?id=${product.id}" class="item">
+							<div class="dbwo6">
+								<img src="${product.mainImage}" alt="${product.name}" class="img"> <!-- Используем главное фото -->
+							</div>
+							<div class="des">
+								<div class="lsgdo">${product.name}</div>
 								<div class="hzl46">$${product.price}</div>
-                            </div>
-                        </a>
-                    `;
-                    productContainer.insertAdjacentHTML('beforeend', productHTML);
-                });
-        }
+							</div>
+						</a>
+					`;
+					productContainer.insertAdjacentHTML('beforeend', productHTML);
+				});
+		}
     });
 </script>	
 </html>

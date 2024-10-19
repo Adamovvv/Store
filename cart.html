@@ -57,10 +57,10 @@
                 const li = document.createElement('li');
                 li.innerHTML = `
                     <div class="cart-item">
-                        <img src="${item.imageUrl}" alt="${item.name}" class="cart-item-image">
+                        <img src="${item.mainImage}" alt="${item.name}" class="cart-item-image">
                         <div class="cart-item-info">
                             <div class="product-name-price">
-                                <span class="product-name">
+                                <span class="cart-product-name">
                                     <span>${item.name}</span>
                                     <span class="static-price">$${item.price.toFixed(2)}</span>
                                 </span>
@@ -102,21 +102,23 @@
             const enteredCode = document.getElementById('couponInput').value;
             const coupons = JSON.parse(localStorage.getItem('coupons')) || [];
             const coupon = coupons.find(c => c.code === enteredCode);
-
-            // Получаем общую сумму корзины
+            
             const cartTotal = parseFloat(document.getElementById('cart-total-amount').textContent.replace('$', ''));
+            const discountMessage = document.getElementById('discountMessage');
 
             if (coupon) {
                 const discount = coupon.discount;
                 const discountedTotal = cartTotal - (cartTotal * (discount / 100));
 
-                // Отображаем итоговую сумму со скидкой
+                // Обновляем отображение суммы со скидкой
                 document.getElementById('discounted-total-amount').textContent = `$${discountedTotal.toFixed(2)}`;
-                document.getElementById('discountMessage').textContent = `Купон применен! Вы получили скидку ${discount}%`;
+                discountMessage.textContent = `Купон применен! Вы получили скидку ${discount}%`;
+                discountMessage.style.color = 'green'; // Зеленый цвет для успешного применения
             } else {
-                // В случае неверного кода, обнуляем сумму со скидкой
+                // Если код неверный, обнуляем скидку и выводим сообщение
                 document.getElementById('discounted-total-amount').textContent = `$${cartTotal.toFixed(2)}`;
-                document.getElementById('discountMessage').textContent = 'Неверный код купона';
+                discountMessage.textContent = 'Неверный код купона';
+                discountMessage.style.color = 'red'; // Красный цвет для неверного кода
             }
         }
 

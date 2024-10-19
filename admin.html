@@ -10,19 +10,30 @@
     <div class="container">
         <h2>Админ панель</h2>
         <form id="productForm">
-            <input type="hidden" id="productId"> <!-- Добавлен для хранения id товара -->
+            <input type="hidden" id="productId"> <!-- ID товара -->
             <input type="text" id="productName" placeholder="Название товара" required>
             <input type="number" step="0.01" id="productPrice" placeholder="Цена" required>
             <input type="text" id="productDescription" placeholder="Описание товара">
-            <input type="text" id="productImage" placeholder="Ссылка на изображение" required>
+            
+            <!-- Инпут для главного фото -->
+            <label for="mainImage">Главное фото:</label>
+            <input type="file" id="mainImage" accept="image/*" required>
+            
+            <!-- Инпут для дополнительных фото -->
+            <label for="additionalImages">Дополнительные фото:</label>
+            <input type="file" id="additionalImages" multiple accept="image/*">
+            
             <select id="productCategory" required>
                 <option value="">Выберите категорию</option>
-                <option value="Электроника">Электроника</option>
-                <option value="Одежда">Одежда</option>
-                <option value="Игрушки">Игрушки</option>
+                <option value="Электроника">Стробоскопы</option>
+                <option value="Одежда">Спецсигналы</option>
+                <option value="Игрушки">Аксессуары</option>
+                <option value="Игрушки">Колоколы</option>
+                <option value="Игрушки">LED Балки</option>
             </select>
+            
             <button type="submit" id="submitBtn">Добавить товар</button>
-        </form>
+        </form>                
         <div class="coupon-management">
             <h3>Управление купонами</h3>
             <input type="text" id="couponCode" placeholder="Код купона" required>
@@ -36,27 +47,64 @@
 <script>
     document.getElementById('productForm').addEventListener('submit', function(e) {
         e.preventDefault();
+        
         const id = document.getElementById('productId').value;
         const name = document.getElementById('productName').value;
         const price = parseFloat(document.getElementById('productPrice').value);
         const description = document.getElementById('productDescription').value;
-        const imageUrl = document.getElementById('productImage').value;
         const category = document.getElementById('productCategory').value;
-
-        if (id) {
-            updateProduct(id, name, price, description, imageUrl, category);
-        } else {
-            addProduct(name, price, description, imageUrl, category);
+        
+        // Получаем главное фото
+        const mainImageInput = document.getElementById('mainImage');
+        if (!mainImageInput.files.length) {
+            alert("Пожалуйста, выберите главное изображение.");
+            return;
         }
-        displayProducts();
-        document.getElementById('productForm').reset();
-        document.getElementById('submitBtn').textContent = 'Добавить товар';
+        
+        const mainImageFile = mainImageInput.files[0];
+        const mainImageReader = new FileReader();
+        
+        // Читаем главное изображение
+        mainImageReader.onload = function(event) {
+            const mainImage = event.target.result;
+            
+            // Читаем дополнительные изображения
+            const additionalImagesInput = document.getElementById('additionalImages');
+            const additionalImages = [];
+            
+            const readAdditionalImages = Array.from(additionalImagesInput.files).map(file => {
+                return new Promise((resolve, reject) => {
+                    const reader = new FileReader();
+                    reader.onload = function(e) {
+                        resolve(e.target.result);
+                    };
+                    reader.onerror = reject;
+                    reader.readAsDataURL(file);
+                });
+            });
+            
+            // Ожидаем загрузки всех дополнительных изображений
+            Promise.all(readAdditionalImages).then(images => {
+                if (id) {
+                    updateProduct(id, name, price, description, mainImage, images, category);
+                } else {
+                    addProduct(name, price, description, mainImage, images, category);
+                }
+                displayProducts();
+                document.getElementById('productForm').reset();
+                document.getElementById('submitBtn').textContent = 'Добавить товар';
+            }).catch(error => {
+                console.error("Ошибка при загрузке дополнительных изображений:", error);
+            });
+        };
+        
+        mainImageReader.readAsDataURL(mainImageFile);
     });
 
-    function addProduct(name, price, description, imageUrl, category) {
+    function addProduct(name, price, description, mainImage, additionalImages, category) {
         const products = JSON.parse(localStorage.getItem('products')) || [];
         const id = products.length ? products[products.length - 1].id + 1 : 1;
-        products.push({ id, name, price, description, imageUrl, category });
+        products.push({ id, name, price, description, mainImage, additionalImages, category });
         localStorage.setItem('products', JSON.stringify(products));
     }
 
@@ -74,11 +122,11 @@
         }
     }
 
-    function updateProduct(id, name, price, description, imageUrl, category) {
+    function updateProduct(id, name, price, description, mainImage, additionalImages, category) {
         let products = JSON.parse(localStorage.getItem('products')) || [];
         const index = products.findIndex(p => p.id == id);
         if (index !== -1) {
-            products[index] = { id: Number(id), name, price, description, imageUrl, category };
+            products[index] = { id: Number(id), name, price, description, mainImage, additionalImages, category };
             localStorage.setItem('products', JSON.stringify(products));
         }
     }
@@ -87,12 +135,13 @@
         const products = JSON.parse(localStorage.getItem('products')) || [];
         const productList = document.getElementById('productList');
         productList.innerHTML = '';
+        
         products.forEach(product => {
             const div = document.createElement('div');
             div.innerHTML = `
                 <div class="product-item">
                     <div class="product-flex">
-                        <img src="${product.imageUrl}" alt="${product.name}">
+                        <img src="${product.mainImage}" alt="${product.name}" class="product-main-image"> <!-- Главное фото -->
                         <div class="admin-product-info">
                             <p><strong>${product.name}</strong></p>
                             <p>Цена: $${product.price}</p>

@@ -59,7 +59,7 @@ button {
 	border-radius: 2rem;
 }
 .categories-item span {
-	display: flex;
+	white-space: nowrap;
 	margin: auto;
 }
 .categories-list .is-active {
@@ -70,7 +70,10 @@ button {
 	color: #ffffff;
 }
 .logo {
-	font-size: 18px;
+	display: flex;
+}
+.logo img {
+	max-width: 50%;
 }
 .inner {
 	display: grid;
@@ -89,14 +92,15 @@ button {
 	padding: 15px;
 	gap: 15px;
 }
+.description {
+	font-weight: bold;
+}
 .img {
 	width: 100%;
 	object-fit: cover;
 }
 .hzl46 {
-    font-weight: 600;
     font-size: 16px;
-	word-break: break-word;
 }
 .lsgdo {
 	display: flex;
@@ -110,7 +114,7 @@ button {
 	flex-direction: column;
 	position: relative;
 	border: 1px solid #ECEEEF;
-	border-radius: 8px;
+	border-radius: 16px;
 	overflow: hidden;
 }
 
@@ -173,6 +177,7 @@ button {
 .twixdgth {
 	display: flex;
 	border-radius: 8px;
+	border: 1px solid #ECEEEF;
 	overflow: hidden;
 }
 .twixdgth img {
@@ -236,9 +241,10 @@ button {
 }
 .cart-container {
     display: flex;
-	height: 48px;
+	height: 60px;
 	padding-left: 15px;
 	padding-right: 15px;
+	padding-bottom: env(safe-area-inset-bottom); /* Адаптация под iPhone */
 	justify-content: space-between;
     align-items: center;
     position: fixed;
@@ -282,8 +288,6 @@ button {
 }
 .search {
 	display: flex;
-	gap: 15px;
-	max-width: 480px;
 	height: 48px;
 	padding: 15px;
 }
@@ -293,18 +297,6 @@ button {
 	background: var(--tg-theme-bg-color);
 	border-radius: 8px;
 	padding: 16px;
-}
-.filter {
-	display: flex;
-	min-width: 48px;
-	min-height: 48px;
-	background: #0e0e0e;
-	border-radius: 8px;
-}
-.filter svg {
-	display: flex;
-	margin: auto;
-	fill: #fff;
 }
 .cart {
 	display: flex;
@@ -322,10 +314,7 @@ button {
 .cart-page {
 	display: flex;
     flex-direction: column;
-    margin: 0 auto;
-    max-width: 480px;
-    justify-content: space-around;
-    align-content: flex-end;
+	gap: 15px;
     padding: 15px;
 }
 #cart-items {
@@ -338,7 +327,6 @@ button {
 	display: flex;
 	gap: 15px;
 	align-items: center;
-    padding: 15px;
     background-color: #fff;
     border-bottom: 1px solid #F1F1F1;
 }
@@ -361,6 +349,7 @@ button {
 	width: 100px;
 	height: 100px;
 	border-radius: 12px;
+	object-fit: cover;
 }
 .cart-controls {
 	display: flex;
@@ -383,8 +372,8 @@ button {
 	justify-content: space-between;
 }
 .product-name {
-	display: grid;
-	gap: 6px;
+	font-size: 22px;
+	font-weight: bold;
 }
 .count {
 	display: flex;
@@ -422,7 +411,7 @@ button {
 }
 .send-cart {
 	display: flex;
-	height: 48px;
+	height: 60px;
 	position: fixed;
 	background: #0e0e0e;
 	color: #fff;
@@ -442,8 +431,6 @@ button {
 	justify-content: space-between;
 	font-size: 16px;
 	font-weight: bold;
-	margin-top: 12px;
-	margin-bottom: 60px;
 }
 #productForm {
 	display: grid;
@@ -478,6 +465,7 @@ button {
 	width: 120px;
 	height: 120px;
 	border-radius: 8px;
+	object-fit: cover;
 }
 .admin-product-info {
 	display: grid;
@@ -539,7 +527,7 @@ button {
 .couponCode {
 	display: grid;
     gap: 15px;
-	margin-top: 24px;
+	margin-top: 15px;
 }
 .coupon-d {
 	display: flex;
@@ -583,10 +571,6 @@ button {
     border-radius: 8px;
     cursor: pointer;
 }
-#discountMessage {
-    color: green;
-    margin-bottom: 20px;
-}
 .discounted-total {
     display: flex;
     align-items: center;
@@ -597,10 +581,17 @@ button {
 	gap: 15px;
 }
 .more-photo {
-	width: 80px;
-	height: 80px;
+    width: 80px;
+    height: 80px;
+	border: 1px solid #ECEEEF;
 	border-radius: 8px;
-	background: #0e0e0e;
+    object-fit: cover;
+    opacity: 0.6; /* По умолчанию все фото не выбраны */
+    transition: opacity 0.3s ease; /* Плавный переход */
+}
+
+.more-photo.selected {
+    opacity: 1; /* Для выбранного фото убираем прозрачность */
 }
 .star-rating {
     display: flex;
@@ -637,4 +628,12 @@ button {
 .review {
 	display: flex;
 	padding: 15px;
+}
+.reviewBtn {
+	height: 38px;
+    background: #0e0e0e;
+	color: #fff;
+    padding: 0 15px;
+    border-radius: 8px;
+    font-weight: bold;
 }
