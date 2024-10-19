@@ -70,10 +70,8 @@ button {
 	color: #ffffff;
 }
 .logo {
-	display: flex;
-}
-.logo img {
-	max-width: 50%;
+	font-size: 22px;
+	font-weight: 800;
 }
 .inner {
 	display: grid;
@@ -289,7 +287,7 @@ button {
 .search {
 	display: flex;
 	height: 48px;
-	padding: 15px;
+	padding: 0 15px;
 }
 .search input {
 	width: 100%;
