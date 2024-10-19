@@ -1,15 +1,3 @@
-function goBack() {
-    window.history.back();
-}
-
-let quantity = 1; // Инициализация количества товаров
-
-// Функция добавления товара в корзину
-function addToCart() {
-    // Действия при добавлении в корзину (например, отправка данных или обновление интерфейса)
-    alert(`Добавлено в корзину: ${quantity} шт.`);
-}
-
 // Функция увеличения количества товаров
 function incrementQuantity() {
     quantity++;
@@ -29,54 +17,6 @@ function updateQuantityDisplay() {
     const quantityDisplay = document.getElementById('quantity');
     quantityDisplay.textContent = quantity;
 }
-
-// Функция добавления товара в корзину
-function addToCart() {
-    const productName = 'Product Name'; // Название продукта
-    const productPrice = 10.99; // Цена продукта
-    const quantity = parseInt(document.getElementById('quantity').textContent); // Количество товаров
-
-    // Создаем объект для товара
-    const item = {
-        name: productName,
-        price: productPrice,
-        quantity: quantity
-    };
-
-    // Получаем текущий список корзины из localStorage
-    const cart = JSON.parse(localStorage.getItem('cart')) || [];
-
-    // Добавляем новый товар в корзину
-    cart.push(item);
-
-    // Сохраняем обновленный список корзины в localStorage
-    localStorage.setItem('cart', JSON.stringify(cart));
-
-    // Обновляем количество товаров в корзине
-    updateCartCount(); // Вызов функции для обновления счетчика
-
-    // Сообщаем пользователю, что товар добавлен в корзину
-    alert(`Добавлено в корзину: ${quantity} шт. ${productName}`);
-}
-
-// Функция увеличения количества товаров
-function incrementQuantity() {
-    const quantityDisplay = document.getElementById('quantity');
-    let quantity = parseInt(quantityDisplay.textContent);
-    quantity++;
-    quantityDisplay.textContent = quantity;
-}
-
-// Функция уменьшения количества товаров (не может быть меньше 1)
-function decrementQuantity() {
-    const quantityDisplay = document.getElementById('quantity');
-    let quantity = parseInt(quantityDisplay.textContent);
-    if (quantity > 1) {
-        quantity--;
-        quantityDisplay.textContent = quantity;
-    }
-}
-
 
 // Функция увеличения количества определенного товара
 function incrementItem(productName) {
