@@ -63,7 +63,7 @@ button {
 	margin: auto;
 }
 .categories-list .is-active {
-	background: #0e0e0e;
+	background: #282B35;
 	color: #fff;
 }
 .is-active .categories-title {
@@ -105,7 +105,7 @@ button {
 	align-items: center;
     font-weight: 600;
     font-size: 20px;
-	color: #0e0e0e;
+	color: #282B35;
 }
 .item {
 	display: flex;
@@ -248,7 +248,7 @@ button {
 	padding-left: 15px;
 	padding-right: 15px;
     background-color: #fff;
-    color: #0e0e0e;
+    color: #282B35;
 	font-size: 16px;
 	font-weight: 700;
     border: none;
@@ -421,7 +421,7 @@ button {
 	height: 38px;
 	font-size: 14px;
 	font-weight: bold;
-	background: #0e0e0e;
+	background: #282B35;
 	color: #fff;
 	border-radius: 8px;
 }
@@ -456,7 +456,7 @@ button {
 	padding-right: 12px;
 	background: #ECEEEF;
 	font-weight: bold;
-	color: #0e0e0e;
+	color: #282B35;
 	border-radius: 8px;
 }
 .delete-btn {
@@ -482,7 +482,7 @@ button {
     outline: none;
 }
 .apply-btn {
-    background-color: #0e0e0e;
+    background-color: #282B35;
     color: #fff;
     padding: 0 20px;
     border: none;
@@ -534,7 +534,7 @@ button {
 .coupon-management button {
     height: 38px;
 	font-weight: bold;
-    background-color: #0e0e0e;
+    background-color: #282B35;
     color: #fff;
     border: none;
     border-radius: 8px;
@@ -599,7 +599,7 @@ button {
 }
 .reviewBtn {
 	height: 38px;
-    background: #0e0e0e;
+    background: #282B35;
 	color: #fff;
     padding: 0 15px;
     border-radius: 8px;
