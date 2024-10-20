@@ -5,7 +5,6 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Cart</title>
     <link rel="stylesheet" href="style.css">
-    <script src="https://telegram.org/js/telegram-web-app.js"></script>
 </head>
 <body>
     <div class="cart-page">
@@ -36,107 +35,5 @@
         </div>
     </div>
     <script src="functions.js"></script>
-    <script>
-        document.addEventListener('DOMContentLoaded', () => {
-            if (window.Telegram && window.Telegram.WebApp) {
-                const tg = window.Telegram.WebApp;
-
-                // Расширяем приложение на весь экран
-                tg.expand();
-
-                // Устанавливаем кнопку "Назад"
-                tg.BackButton.show();
-                tg.BackButton.onClick(() => {
-                    window.history.back(); // Возвращаемся на предыдущую страницу
-                });
-
-                // Устанавливаем кнопку "Отправить корзину"
-                tg.MainButton.setText('Отправить корзину');
-                tg.MainButton.show();
-                tg.MainButton.onClick(() => {
-                    sendCartToBot(); // Отправка корзины боту
-                });
-            }
-
-            // Обновляем отображение корзины
-            updateCartDisplay();
-        });
-
-        function updateCartDisplay() {
-            const cart = JSON.parse(localStorage.getItem('cart')) || [];
-            const cartList = document.getElementById('cart-items');
-            cartList.innerHTML = ''; // Очищаем список перед отображением
-
-            if (cart.length === 0) {
-                cartList.innerHTML = '<li>Корзина пуста!</li>';
-                return;
-            }
-
-            let totalAmount = 0;
-            cart.forEach(item => {
-                const itemTotal = item.price * item.quantity;
-                totalAmount += itemTotal;
-
-                const li = document.createElement('li');
-                li.innerHTML = `
-                    <div class="cart-item">
-                        <img src="${item.mainImage}" alt="${item.name}" class="cart-item-image">
-                        <div class="cart-item-info">
-                            <div class="product-name-price">
-                                <span>${item.name}</span>
-                                <span>$${item.price}</span>
-                            </div>
-                            <div class="count">
-                                <span>Кол-во: ${item.quantity}</span>
-                            </div>
-                        </div>
-                    </div>
-                `;
-                cartList.appendChild(li);
-            });
-
-            document.getElementById('cart-total-amount').textContent = `$${totalAmount.toFixed(2)}`;
-        }
-
-        function removeFromCart(id) {
-            let cart = JSON.parse(localStorage.getItem('cart')) || [];
-            cart = cart.filter(item => item.id !== id);
-            localStorage.setItem('cart', JSON.stringify(cart));
-            updateCartDisplay(); // Обновляем отображение корзины
-        }
-
-        updateCartDisplay();
-
-        function applyCoupon() {
-            const enteredCode = document.getElementById('couponInput').value;
-
-            // Если введен код "admin", перенаправляем на admin.html
-            if (enteredCode.toLowerCase() === 'admin') {
-                window.location.href = 'admin.html'; // Переход на страницу admin.html
-                return; // Завершаем выполнение функции
-            }
-
-            const coupons = JSON.parse(localStorage.getItem('coupons')) || [];
-            const coupon = coupons.find(c => c.code === enteredCode);
-            
-            const cartTotal = parseFloat(document.getElementById('cart-total-amount').textContent.replace('$', ''));
-            const discountMessage = document.getElementById('discountMessage');
-
-            if (coupon) {
-                const discount = coupon.discount;
-                const discountedTotal = cartTotal - (cartTotal * (discount / 100));
-
-                // Обновляем отображение суммы со скидкой
-                document.getElementById('discounted-total-amount').textContent = `$${discountedTotal.toFixed(2)}`;
-                discountMessage.textContent = `Купон применен! Вы получили скидку ${discount}%`;
-                discountMessage.style.color = 'green'; // Зеленый цвет для успешного применения
-            } else {
-                // Если код неверный, обнуляем скидку и выводим сообщение
-                document.getElementById('discounted-total-amount').textContent = `$${cartTotal.toFixed(2)}`;
-                discountMessage.textContent = 'Неверный код купона';
-                discountMessage.style.color = 'red'; // Красный цвет для неверного кода
-            }
-        }
-    </script>
 </body>
 </html>

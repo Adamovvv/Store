@@ -5,7 +5,6 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Product Page</title>
     <link rel="stylesheet" href="style.css">
-    <script src="https://telegram.org/js/telegram-web-app.js"></script>
 </head>
 <body>
     <div class="container product-page">
@@ -18,11 +17,15 @@
         </div>
         <div class="product-info">
             <div class="twixdgth">
-                <img id="productImage" src="" alt="Product Image">
+                <img id="productImage" src="https://www.svgrepo.com/show/508699/landscape-placeholder.svg" alt="Product Image">
             </div>
-            <div class="more-photos-product"></div>
-            <div id="productName" class="product-name"></div>
-            <div id="productPrice" class="price"></div>
+            <div class="more-photos-product">
+                <img src="https://www.svgrepo.com/show/508699/landscape-placeholder.svg" class="more-photo selected" alt="">
+                <img src="https://www.svgrepo.com/show/508699/landscape-placeholder.svg" class="more-photo" alt="">
+                <img src="https://www.svgrepo.com/show/508699/landscape-placeholder.svg" class="more-photo" alt="">
+            </div>
+            <div id="productName" class="product-name">Product name</div>
+            <div id="productPrice" class="price">999</div>
             <div class="divider"></div>
             <div class="rlycdaoc">
                 <span class="description">Описание</span>
@@ -32,131 +35,11 @@
         <div class="recommendations">
             <h3>Рекомендуемые товары</h3>
             <div id="recommendationsContainer"></div>
-        </div>        
+        </div>
+        <div class="layout-tabs">
+            <button>Добавить в корзину</button>
+        </div>       
     </div>
-
-    <script>
-        document.addEventListener('DOMContentLoaded', () => {
-            if (window.Telegram && window.Telegram.WebApp) {
-                const tg = window.Telegram.WebApp;
-
-                // Расширяем приложение на весь экран
-                tg.expand();
-
-                // Показываем кнопку "Назад"
-                tg.BackButton.show();
-                tg.BackButton.onClick(() => {
-                    window.history.back();
-                });
-
-                // Настраиваем кнопку "Добавить в корзину"
-                tg.MainButton.setText('Добавить в корзину');
-                tg.MainButton.show();
-                tg.MainButton.onClick(() => {
-                    addToCart(); // Вызов функции добавления товара в корзину
-                });
-            }
-        });
-
-        // Вспомогательная функция для получения параметра из URL
-        function getQueryParam(param) {
-            const urlParams = new URLSearchParams(window.location.search);
-            return urlParams.get(param);
-        }
-
-        const productId = getQueryParam('id');
-        const products = JSON.parse(localStorage.getItem('products')) || [];
-        const product = products.find(p => p.id == productId);
-
-        if (product) {
-            // Отображаем главное изображение как основное
-            document.getElementById('productName').textContent = product.name;
-            document.getElementById('productPrice').textContent = `$${product.price}`;
-            const mainImageElement = document.getElementById('productImage');
-            mainImageElement.src = product.mainImage; // Главное изображение
-            document.getElementById('productDescription').textContent = product.description || 'Описание отсутствует';
-
-            const morePhotoContainer = document.querySelector('.more-photos-product');
-
-            // Сначала добавляем главное фото в миниатюры
-            const mainImgElement = document.createElement('img');
-            mainImgElement.src = product.mainImage;
-            mainImgElement.classList.add('more-photo', 'selected'); // Главное фото по умолчанию выбранное
-            mainImgElement.onclick = () => {
-                mainImageElement.src = product.mainImage;
-                setSelectedPhoto(mainImgElement);
-            };
-            morePhotoContainer.appendChild(mainImgElement);
-
-            // Добавляем дополнительные фотографии
-            product.additionalImages.forEach(image => {
-                const imgElement = document.createElement('img');
-                imgElement.src = image;
-                imgElement.classList.add('more-photo');
-                imgElement.onclick = () => {
-                    mainImageElement.src = image;
-                    setSelectedPhoto(imgElement);
-                };
-                morePhotoContainer.appendChild(imgElement);
-            });
-        }
-
-        // Функция для установки выбранного фото
-        function setSelectedPhoto(selectedElement) {
-            // Сначала убираем класс "selected" у всех фото
-            document.querySelectorAll('.more-photo').forEach(photo => {
-                photo.classList.remove('selected');
-            });
-            
-            // Добавляем класс "selected" только выбранному фото
-            selectedElement.classList.add('selected');
-        }
-
-        // Функция добавления товара в корзину
-        function addToCart() {
-            const productId = getQueryParam('id');
-            const products = JSON.parse(localStorage.getItem('products')) || [];
-            const product = products.find(p => p.id == productId);
-
-            if (product) {
-                let cart = JSON.parse(localStorage.getItem('cart')) || [];
-                const cartItem = cart.find(item => item.id === product.id);
-
-                if (cartItem) {
-                    cartItem.quantity++; // Увеличиваем количество, если товар уже есть в корзине
-                } else {
-                    cart.push({ ...product, quantity: 1 }); // Добавляем новый товар в корзину
-                }
-
-                localStorage.setItem('cart', JSON.stringify(cart)); // Сохраняем обновленный список в localStorage
-
-                // Показываем Alert
-                alert('Товар успешно добавлен в корзину!');
-            } else {
-                alert('Товар не найден!');
-            }
-        }
-
-
-
-        function displayRecommendations(category) {
-            const recommendedProducts = products.filter(p => p.category === category && p.id !== productId).slice(0, 3);
-            const recommendationsContainer = document.getElementById('recommendationsContainer');
-            
-            recommendationsContainer.innerHTML = recommendedProducts.map(product => 
-                `<a href="product.html?id=${product.id}" class="item">
-                    <div class="dbwo6">
-                        <img src="${product.mainImage}" alt="${product.name}" class="img">
-                    </div>
-                    <div class="des">
-                        <div class="lsgdo">${product.name}</div>
-                        <div class="hzl46">$${product.price}</div>
-                    </div>
-                </a>`
-            ).join('');
-        }
-
-        displayRecommendations(product.category); // Показать рекомендации
-    </script>
+    <script src="functions.js"></script>
 </body>
 </html>
