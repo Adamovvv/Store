@@ -130,16 +130,14 @@
 
                 localStorage.setItem('cart', JSON.stringify(cart)); // Сохраняем обновленный список в localStorage
 
-                // Меняем текст кнопки на подтверждение
-                const tg = window.Telegram.WebApp;
-                tg.MainButton.setText('Добавлено!');
-                setTimeout(() => {
-                    tg.MainButton.setText('Добавить в корзину');
-                }, 1000);
+                // Показываем Alert
+                alert('Товар успешно добавлен в корзину!');
             } else {
                 alert('Товар не найден!');
             }
         }
+
+
 
         function displayRecommendations(category) {
             const recommendedProducts = products.filter(p => p.category === category && p.id !== productId).slice(0, 3);

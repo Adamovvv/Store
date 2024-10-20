@@ -76,7 +76,6 @@ function calculateTotal() {
     return total.toFixed(2); // Возвращает общую сумму с двумя знаками после запятой
 }
 
-
 function updateCartCount() {
     // Получаем корзину из localStorage
     const cart = JSON.parse(localStorage.getItem('cart')) || [];
