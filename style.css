@@ -1,12 +1,20 @@
+:root {
+    --custom-dark-bg-color: #000000; /* Ваш черный фон */
+    --custom-dark-text-color: #ffffff; /* Белый текст */
+    --custom-dark-link-color: #1e90ff; /* Цвет ссылок */
+    --custom-dark-secondary-bg-color: #1c1c1e; /* Вторичный фон */
+    --custom-dark-button-color: #007aff; /* Цвет кнопок */
+    --custom-dark-button-text-color: #ffffff; /* Цвет текста на кнопках */
+}
 body {
 	margin: 0;
 	padding: 0;
 	font-family: 'Roboto', sans-serif;
-	color: var(--tg-theme-text-color);
-	background: var(--tg-theme-bg-color);
+	background: var(--custom-dark-bg-color);
+    color: var(--custom-dark-text-color);
 }
 a {
-	color: var(--tg-theme-text-color);;
+	color: var(--tg-theme-link-color);
 	text-decoration: none;
 }
 p {
@@ -57,15 +65,19 @@ button {
 	height: 33px;
 	padding-left: 15px;
 	padding-right: 15px;
-	background: #ECEEEF;
+	background: var(--tg-theme-secondary-bg-color);
 	border-radius: 2rem;
+}
+.categories-item.is-active {
+    background: var(--tg-theme-button-color);
+    color: var(--tg-theme-button-text-color);
 }
 .categories-item span {
 	white-space: nowrap;
 	margin: auto;
 }
 .categories-list .is-active {
-	background: #282B35;
+	background: var(--custom-dark-secondary-bg-color);
 	color: #fff;
 }
 .is-active .categories-title {
@@ -109,7 +121,7 @@ button {
 	align-items: center;
     font-weight: 600;
     font-size: 20px;
-	color: #282B35;
+	color: var(--custom-dark-text-color);
 }
 .item {
 	display: flex;
@@ -289,6 +301,7 @@ button {
 	width: 100%;
 	height: 100%;
 	padding: 0;
+	background: none;
 	border: none;
 }
 .cart {
