@@ -8,37 +8,27 @@
 </head>
 <body>
     <div class="container product-page">
-        <div class="srueuxwi">
-            <div class="urfjoogb">
-                <div class="lkmns">
-                    <div class="">Информация о продукте</div>
-                </div>
-            </div>
-        </div>
-        <div class="product-info">
+        <div class="product">
             <div class="twixdgth">
                 <img id="productImage" src="https://www.svgrepo.com/show/508699/landscape-placeholder.svg" alt="Product Image">
             </div>
-            <div class="more-photos-product">
-                <img src="https://www.svgrepo.com/show/508699/landscape-placeholder.svg" class="more-photo selected" alt="">
-                <img src="https://www.svgrepo.com/show/508699/landscape-placeholder.svg" class="more-photo" alt="">
-                <img src="https://www.svgrepo.com/show/508699/landscape-placeholder.svg" class="more-photo" alt="">
+            <div class="product-info">
+                <div id="productName" class="product-name">Product name</div>
+                <div id="productPrice" class="price">$999</div>
+                <div class="divider"></div>
+                <div class="rlycdaoc">
+                    <h3 class="description">Описание</h3>
+                    <span id="productDescription">Описание</span>
+                </div>          
             </div>
-            <div id="productName" class="product-name">Product name</div>
-            <div id="productPrice" class="price">999</div>
-            <div class="divider"></div>
-            <div class="rlycdaoc">
-                <span class="description">Описание</span>
-                <span id="productDescription">Описание</span>
-            </div>          
         </div>      
         <div class="recommendations">
             <h3>Рекомендуемые товары</h3>
             <div id="recommendationsContainer"></div>
         </div>
-        <div class="layout-tabs">
-            <button>Добавить в корзину</button>
-        </div>       
+        <button class="layout-tabs">
+            <span>Add to cart</span>
+        </button>       
     </div>
     <script src="functions.js"></script>
 </body>

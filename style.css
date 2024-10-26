@@ -12,6 +12,9 @@ a {
 p {
 	margin: 0;
 }
+h3 {
+	margin: 0;
+}
 button {
 	cursor: pointer;
 	border: none;
@@ -65,7 +68,7 @@ button {
 	margin: auto;
 }
 .categories-list .is-active {
-	background: #282B35;
+	background: #307fff;
 	color: #fff;
 }
 .is-active .categories-title {
@@ -83,9 +86,16 @@ button {
 .dbwo6 {
 	display: flex;
 	width: 100%;
+	position: relative;
 }
 .dbwo7 {
 	display: flex;
+}
+.like-product svg {
+	width: 20px;
+	height: 20px;
+	margin: auto;
+	fill: #fff;
 }
 .des {
 	display: flex;
@@ -102,13 +112,14 @@ button {
 	object-fit: cover;
 }
 .hzl46 {
-    font-size: 16px;
+    font-size: 20px;
+	font-weight: bold;
 }
 .lsgdo {
 	display: flex;
 	align-items: center;
     font-weight: 600;
-    font-size: 20px;
+    font-size: 16px;
 	color: #282B35;
 }
 .item {
@@ -126,6 +137,16 @@ button {
 	border: 1px solid #ECEEEF;
 	border-radius: 16px;
 	overflow: hidden;
+}
+.like-product {
+	display: flex;
+	position: absolute;
+    background: #989898;
+    width: 36px;
+    height: 36px;
+    border-radius: 2rem;
+    top: 8px;
+    right: 8px;
 }
 .btn {
 	display: inline-block;
@@ -145,13 +166,6 @@ button {
 
 .usercard {
 	text-align: center;
-}
-.srueuxwi {
-	display: flex;
-	justify-content: space-between;
-	align-items: center;
-	padding: 15px;
-	border-bottom: 1px solid #e7eaf3;
 }
 .srueuxwi_cart {
 	display: flex;
@@ -184,10 +198,7 @@ button {
 	margin: 12px 0;
 }
 .twixdgth {
-	max-width: 450px;
-	max-height: 450px;
 	display: flex;
-	border-radius: 8px;
 	border: 1px solid #ECEEEF;
 	overflow: hidden;
 }
@@ -195,19 +206,14 @@ button {
 	width: 100%;
 }
 .price {
-	font-size: 16px;
+	font-size: 24px;
+	font-weight: bold;
 }
 .xpmkoxit {
 	display: flex;
 	justify-content: space-between;
 	align-items: center;
 	padding: 15px;
-}
-.urfjoogb {
-	width: 100%;
-	display: flex;
-	gap: 5px;
-	align-items: center;
 }
 .lkmns {
 	width: 100%;
@@ -250,18 +256,6 @@ button {
 	height: 100%;
 	object-fit: cover;
 }
-.add-to-cart-btn {
-    height: 36px;
-	padding-left: 15px;
-	padding-right: 15px;
-    background-color: #fff;
-    color: #282B35;
-	font-size: 16px;
-	font-weight: 700;
-    border: none;
-    border-radius: 4px;
-    cursor: pointer;
-}
 #cart-count {
 	font-size: 16px;
 	font-weight: bold;
@@ -281,14 +275,13 @@ button {
 	align-items: center;
 	height: 48px;
 	margin: 0 15px;
-	padding: 0 15px;
 	border: 1px solid #E9EBF2;
-	border-radius: 8px;
+	border-radius: 12px;
 }
 .search input {
 	width: 100%;
 	height: 100%;
-	padding: 0;
+	padding: 15px;
 	background: none;
 	border: none;
 }
@@ -304,6 +297,7 @@ button {
 .search svg {
 	width: 24px;
 	height: 24px;
+	margin-right: 15px;
 }
 .cart-page {
 	display: flex;
@@ -358,7 +352,7 @@ button {
 	justify-content: space-between;
 }
 .product-name {
-	font-size: 22px;
+	font-size: 18px;
 	font-weight: bold;
 }
 .count {
@@ -380,7 +374,7 @@ button {
 	display: flex;
 	align-items: center;
 	justify-content: space-between;
-	font-size: 16px;
+	font-size: 18px;
 	font-weight: bold;
 }
 #productForm {
@@ -454,18 +448,17 @@ button {
 .coupon-form {
     display: flex;
 	height: 44px;
-    border: 1px solid #ECEEEF;
     border-radius: 12px;
     overflow: hidden;
 }
 .coupon-input {
     flex: 1;
     padding: 15px;
-    border: none;
+    border: 1px solid #ECEEEF;
     outline: none;
 }
 .apply-btn {
-    background-color: #282B35;
+    background-color: #307fff;
     color: #fff;
     padding: 0 20px;
     border: none;
@@ -528,20 +521,8 @@ button {
     align-items: center;
     justify-content: space-between;
 }
-.more-photos-product {
-	display: flex;
-	gap: 15px;
-}
-.more-photo {
-    width: 80px;
-    height: 80px;
-	border: 1px solid #ECEEEF;
-	border-radius: 8px;
-    object-fit: cover;
-    opacity: 0.6; /* По умолчанию все фото не выбраны */
-}
-.more-photo.selected {
-    opacity: 1; /* Для выбранного фото убираем прозрачность */
+.recommendations {
+	padding: 15px;
 }
 #recommendationsContainer {
 	display: grid;
@@ -550,14 +531,25 @@ button {
 	padding: 15px;
 }
 .layout-tabs {
+	display: flex;
 	right: 0;
     bottom: 0;
     left: 0;
     position: fixed;
-	background: #282B35;
-    height: 83px;
+	background: #307fff;
+    height: 49px;
+	border-radius: 12px;
 	padding-left: 15px;
     padding-right: 15px;
+	margin-left: 15px;
+    margin-right: 15px;
+    margin-bottom: 34px;
+}
+.layout-tabs span {
+	font-size: 18px;
+	font-weight: bold;
+	margin: auto;
+	color: #fff;
 }
 .item-button {
 	display: flex;
@@ -567,7 +559,7 @@ button {
 	height: 38px;
     font-size: 14px;
     font-weight: bold;
-    background: #282B35;
+    background: #307fff;
     color: #fff;
     border-radius: 8px;
 }
