@@ -22,16 +22,20 @@ button {
 }
 .container {
 	display: flex;
-	flex-direction: column;
-	max-width: 480px;
+    flex-direction: column;
+    max-width: 480px;
+    height: 100vh;
+    overflow-y: auto;
+    padding-bottom: 83px;
 }
 .product-page {
-	margin-bottom: 80px;
+	margin-bottom: 83px;
 }
 .products-list {
 	display: grid;
 	gap: 15px;
 	padding: 15px;
+	flex-grow: 1;
 }
 .categories-wrapper {
 	display: grid;
@@ -92,8 +96,8 @@ button {
 	display: flex;
 }
 .like-product svg {
-	width: 20px;
-	height: 20px;
+	width: 24px;
+	height: 24px;
 	margin: auto;
 	fill: #fff;
 }
@@ -455,6 +459,7 @@ button {
     flex: 1;
     padding: 15px;
     border: 1px solid #ECEEEF;
+	border-radius: 0px;
     outline: none;
 }
 .apply-btn {
